@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<CVehicleModelInfoVariation>
+  <variationData>
+	<Item>
+      <modelName>m340</modelName>
+      <colors>
+        <Item>
+          <indices content="char_array">
+            111 
+            111
+            0
+            0 
+            111
+            0
+          </indices>
+          <liveries>
+            <Item value="false" />
+          </liveries>
+        </Item> 
+      </colors>
+      <kits>
+        <Item>m340_modkit</Item>
+      </kits>
+      <windowsWithExposedEdges />
+      <plateProbabilities>
+        <Probabilities>
+          <Item>
+            <Name>Standard White</Name>
+            <Value value="100" />
+          </Item>
+        </Probabilities>
+      </plateProbabilities>
+      <lightSettings value="3" />
+      <sirenSettings value="0" />
+    </Item>
+  </variationData>
+</CVehicleModelInfoVariation>
