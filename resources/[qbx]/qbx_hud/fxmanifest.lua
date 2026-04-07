@@ -3,7 +3,7 @@ game 'gta5'
 
 description 'Temac HUD for Qbox'
 repository 'https://github.com/AndreDev-95/BaseCalifornia'
-version 'Beta 1.3.0'
+version 'Beta 1.3.1'
 
 ox_lib 'locale'
 

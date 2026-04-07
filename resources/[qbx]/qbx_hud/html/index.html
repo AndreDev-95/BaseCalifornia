@@ -8,26 +8,31 @@
 <body>
   <div id="hud" class="hud-root hidden">
     <div id="status" class="status-stack">
-      <div class="bar-wrap" data-key="health">
+      <div class="bar-wrap">
         <span class="label">HP</span>
         <div class="track"><div class="bar" id="health"></div></div>
       </div>
-      <div class="bar-wrap" data-key="armor">
+      <div class="bar-wrap">
         <span class="label">AR</span>
         <div class="track"><div class="bar" id="armor"></div></div>
       </div>
-      <div class="bar-wrap" data-key="hunger">
+      <div class="bar-wrap">
         <span class="label">FO</span>
         <div class="track"><div class="bar" id="hunger"></div></div>
       </div>
-      <div class="bar-wrap" data-key="thirst">
+      <div class="bar-wrap">
         <span class="label">AG</span>
         <div class="track"><div class="bar" id="thirst"></div></div>
       </div>
-      <div class="bar-wrap" data-key="voice">
+      <div class="bar-wrap">
         <span class="label">VOZ</span>
         <div class="track"><div class="bar" id="voice"></div></div>
       </div>
+    </div>
+
+    <div id="location" class="location-card hidden">
+      <div id="street-primary" class="location-primary">---</div>
+      <div id="street-secondary" class="location-secondary">---</div>
     </div>
 
     <div id="vehicle" class="vehicle-card hidden">
@@ -37,7 +42,7 @@
       </div>
       <div class="vehicle-bottom">
         <span id="fuel" class="pill">0%</span>
-        <span id="seatbelt" class="pill danger">SEM CINTO</span>
+        <span id="seatbelt" class="pill danger">CINTO</span>
       </div>
     </div>
   </div>
