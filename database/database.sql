@@ -441,6 +441,285 @@ CREATE TABLE IF NOT EXISTS `ox_inventory` (
 -- A despejar dados para tabela temacdatabase.ox_inventory: ~0 rows (aproximadamente)
 DELETE FROM `ox_inventory`;
 
+-- A despejar estrutura para tabela temacdatabase.phone_calls
+CREATE TABLE IF NOT EXISTS `phone_calls` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `caller` varchar(50) NOT NULL,
+  `receiver` varchar(50) NOT NULL,
+  `duration` int(11) DEFAULT 0,
+  `status` varchar(20) DEFAULT 'missed',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_caller` (`caller`),
+  KEY `idx_receiver` (`receiver`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_calls: ~0 rows (aproximadamente)
+DELETE FROM `phone_calls`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_chirper
+CREATE TABLE IF NOT EXISTS `phone_chirper` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(50) NOT NULL,
+  `author_name` varchar(100) DEFAULT NULL,
+  `author_avatar` text DEFAULT NULL,
+  `content` text NOT NULL,
+  `image` text DEFAULT NULL,
+  `likes` int(11) DEFAULT 0,
+  `rechirps` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `verified` tinyint(1) DEFAULT 0,
+  `reply_to` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `idx_author` (`author`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_chirper: ~0 rows (aproximadamente)
+DELETE FROM `phone_chirper`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_chirper_comments
+CREATE TABLE IF NOT EXISTS `phone_chirper_comments` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chirp_id` int(11) NOT NULL,
+  `author` varchar(50) NOT NULL,
+  `author_name` varchar(100) DEFAULT NULL,
+  `author_avatar` text DEFAULT NULL,
+  `content` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_chirp_comments` (`chirp_id`),
+  CONSTRAINT `fk_phone_chirper_comments_chirp` FOREIGN KEY (`chirp_id`) REFERENCES `phone_chirper` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_chirper_comments: ~0 rows (aproximadamente)
+DELETE FROM `phone_chirper_comments`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_chirper_likes
+CREATE TABLE IF NOT EXISTS `phone_chirper_likes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chirp_id` int(11) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_like` (`chirp_id`,`user_id`),
+  CONSTRAINT `phone_chirper_likes_ibfk_1` FOREIGN KEY (`chirp_id`) REFERENCES `phone_chirper` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_chirper_likes: ~0 rows (aproximadamente)
+DELETE FROM `phone_chirper_likes`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_chirper_rechirps
+CREATE TABLE IF NOT EXISTS `phone_chirper_rechirps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `chirp_id` int(11) NOT NULL,
+  `user_id` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_rechirp` (`chirp_id`,`user_id`),
+  CONSTRAINT `fk_phone_chirper_rechirps_chirp` FOREIGN KEY (`chirp_id`) REFERENCES `phone_chirper` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_chirper_rechirps: ~0 rows (aproximadamente)
+DELETE FROM `phone_chirper_rechirps`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_contacts
+CREATE TABLE IF NOT EXISTS `phone_contacts` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` varchar(50) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `number` varchar(20) NOT NULL,
+  `avatar` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_owner` (`owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_contacts: ~0 rows (aproximadamente)
+DELETE FROM `phone_contacts`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_emails
+CREATE TABLE IF NOT EXISTS `phone_emails` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` varchar(100) NOT NULL,
+  `receiver` varchar(100) NOT NULL,
+  `subject` varchar(200) DEFAULT NULL,
+  `body` text DEFAULT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_receiver` (`receiver`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_emails: ~0 rows (aproximadamente)
+DELETE FROM `phone_emails`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_flamer_matches
+CREATE TABLE IF NOT EXISTS `phone_flamer_matches` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user1` varchar(50) NOT NULL,
+  `user2` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_user1` (`user1`),
+  KEY `idx_user2` (`user2`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_flamer_matches: ~0 rows (aproximadamente)
+DELETE FROM `phone_flamer_matches`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_flamer_messages
+CREATE TABLE IF NOT EXISTS `phone_flamer_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `match_id` int(11) NOT NULL,
+  `sender` varchar(50) NOT NULL,
+  `message` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `match_id` (`match_id`),
+  CONSTRAINT `phone_flamer_messages_ibfk_1` FOREIGN KEY (`match_id`) REFERENCES `phone_flamer_matches` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_flamer_messages: ~0 rows (aproximadamente)
+DELETE FROM `phone_flamer_messages`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_flamer_profiles
+CREATE TABLE IF NOT EXISTS `phone_flamer_profiles` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` varchar(50) NOT NULL,
+  `name` varchar(100) DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `bio` text DEFAULT NULL,
+  `photos` text DEFAULT NULL,
+  `looking_for` varchar(20) DEFAULT 'everyone',
+  `active` tinyint(1) DEFAULT 1,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_flamer_profiles: ~0 rows (aproximadamente)
+DELETE FROM `phone_flamer_profiles`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_flamer_swipes
+CREATE TABLE IF NOT EXISTS `phone_flamer_swipes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `swiper` varchar(50) NOT NULL,
+  `swiped` varchar(50) NOT NULL,
+  `direction` varchar(10) NOT NULL,
+  `super_like` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_swipe` (`swiper`,`swiped`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_flamer_swipes: ~0 rows (aproximadamente)
+DELETE FROM `phone_flamer_swipes`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_gallery
+CREATE TABLE IF NOT EXISTS `phone_gallery` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` varchar(50) NOT NULL,
+  `url` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_owner` (`owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_gallery: ~0 rows (aproximadamente)
+DELETE FROM `phone_gallery`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_installed_apps
+CREATE TABLE IF NOT EXISTS `phone_installed_apps` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` varchar(50) NOT NULL,
+  `app_id` varchar(50) NOT NULL,
+  `installed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_app` (`owner`,`app_id`),
+  KEY `idx_owner` (`owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_installed_apps: ~0 rows (aproximadamente)
+DELETE FROM `phone_installed_apps`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_messages
+CREATE TABLE IF NOT EXISTS `phone_messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sender` varchar(50) NOT NULL,
+  `receiver` varchar(50) NOT NULL,
+  `message` text NOT NULL,
+  `is_read` tinyint(1) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_sender` (`sender`),
+  KEY `idx_receiver` (`receiver`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_messages: ~0 rows (aproximadamente)
+DELETE FROM `phone_messages`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_notes
+CREATE TABLE IF NOT EXISTS `phone_notes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `owner` varchar(50) NOT NULL,
+  `title` varchar(200) DEFAULT NULL,
+  `content` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_owner` (`owner`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_notes: ~0 rows (aproximadamente)
+DELETE FROM `phone_notes`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_pictura
+CREATE TABLE IF NOT EXISTS `phone_pictura` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(50) NOT NULL,
+  `author_name` varchar(100) DEFAULT NULL,
+  `author_avatar` text DEFAULT NULL,
+  `image` text NOT NULL,
+  `caption` text DEFAULT NULL,
+  `filters` text DEFAULT NULL,
+  `likes` int(11) DEFAULT 0,
+  `comments` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_author` (`author`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_pictura: ~0 rows (aproximadamente)
+DELETE FROM `phone_pictura`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_pictura_follows
+CREATE TABLE IF NOT EXISTS `phone_pictura_follows` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `follower` varchar(50) NOT NULL,
+  `following` varchar(50) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `unique_follow` (`follower`,`following`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_pictura_follows: ~0 rows (aproximadamente)
+DELETE FROM `phone_pictura_follows`;
+
+-- A despejar estrutura para tabela temacdatabase.phone_pictura_stories
+CREATE TABLE IF NOT EXISTS `phone_pictura_stories` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `author` varchar(50) NOT NULL,
+  `image` text NOT NULL,
+  `views` int(11) DEFAULT 0,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  KEY `idx_author` (`author`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- A despejar dados para tabela temacdatabase.phone_pictura_stories: ~0 rows (aproximadamente)
+DELETE FROM `phone_pictura_stories`;
+
 -- A despejar estrutura para tabela temacdatabase.player_groups
 CREATE TABLE IF NOT EXISTS `player_groups` (
   `citizenid` varchar(50) NOT NULL,
