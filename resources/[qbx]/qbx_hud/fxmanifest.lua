@@ -1,9 +1,9 @@
 fx_version 'cerulean'
 game 'gta5'
 
-description 'HUD for Qbox'
-repository 'https://github.com/Qbox-project/qbx_hud'
-version '0.1.0'
+description 'Temac HUD for Qbox'
+repository 'https://github.com/AndreDev-95/BaseCalifornia'
+version 'Beta 1.2.0'
 
 ox_lib 'locale'
 
@@ -27,9 +27,11 @@ files {
     'html/styles.css',
     'html/responsive.css',
     'html/app.js',
+    'html/brand-logo.svg',
     'locales/*.json',
     'config/client.lua',
     'config/shared.lua',
+    'config/server.lua'
 }
 
 lua54 'yes'

@@ -1,294 +1,172 @@
-@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');@import url('https://fonts.cdnfonts.com/css/pricedown');@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@100;300;400;500;700;900&display=swap');@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+* {
+  box-sizing: border-box;
+}
 
-/* Menu */
-div#openmenu { display: none; position: absolute; width: 50%; top: 45%; left: 50%; transform: translate(-50%,-50%); }
-.brand-logo { width: 25%; } /* when using an svg all you need to change is the width and it will resize it */
+:root {
+  --panel: rgba(15, 23, 42, 0.72);
+  --panel-strong: rgba(15, 23, 42, 0.9);
+  --track: rgba(255, 255, 255, 0.12);
+  --text: #f8fafc;
+  --muted: rgba(248, 250, 252, 0.72);
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #22c55e;
+}
 
-/* Menu tab & panel styles */
-.text-tabcolor { color: rgb(255, 255, 255)!important; }
-.bg-active-tab { background: rgb(23 23 23)!important; }
-.bg-panel { background: rgb(30 30 30)!important; }
-.q-tab-panels { border-top-right-radius: 12px!important; border-bottom-right-radius: 12px!important; } /* change all 12px for a different border radius (rounds edges of the menu) */
-.q-splitter__panel.q-splitter__before { border-top-left-radius: 12px!important; border-bottom-left-radius: 12px!important; } /* change all 12px for a different border radius (rounds edges of the menu) */
-.q-tabs--vertical.q-tabs--not-scrollable .q-tabs__content { border-top-left-radius: 12px!important; border-bottom-left-radius: 12px!important; } /* change all 12px for a different border radius (rounds edges of the menu) */
-
-/* Menu text styles */
-.text-h6 { color: rgb(255, 255, 255)!important; }
-.text-h7 { color: rgba(255, 255, 255, 0.8)!important; }
-
-/* Menu buttons & checkboxes & toggle switch icons styles */
-.text-textbutton { color: rgb(0, 0, 0)!important; }
-.bg-bgbutton { background: rgba(241, 229, 66, 0.651)!important; }
-.q-checkbox__inner { color: rgb(255 255 255 / 70%)!important; }
-.text-checkbox { color: rgba(241, 229, 66, 0.651)!important; }
-.q-checkbox__svg { color: rgb(0, 0, 0)!important; }
-.q-checkbox__inner--truthy .q-checkbox__bg { box-shadow: 0px 0px 3px 3px rgb(220 20 60 / 15%)!important; } /* if you want the checkboxes to have a glow/shadow */
-.text-toggleicons { color: rgb(0, 0, 0)!important; }
-
-/* Menu misc */
-hr { opacity: 0.1!important; } /* horizontal line that seperates sections */
-.q-mb-md { margin-bottom: 0px!important; } /* removes extra top padding */
-.q-mb-md-d { padding-left: 10px!important; padding-bottom: 10px!important;} /* keeps q-items aligned */
-.q-item { padding: 8px 0px!important; } /* keeps q-items aligned */
-.q-item__section--avatar { min-width: 40px!important } /* keeps q-items aligned */
-.q-item__section--side { padding-right: 0px!important; } /* keeps q-items aligned */
-.q-splitter--vertical>.q-splitter__separator { width: 0px!important; } /* keeps navigation tab panel seamless */
-div#q-loading-bar { display: none!important; } /* makes sure there's no ajax load from quasar */
-::-webkit-scrollbar { display: none!important; } /* makes sure there's no ugly scrollbar on menu*/
-
-/* Hud radial styles */
-.text-health { color: rgb(33, 171, 97)!important; }
-.text-stress { color: rgb(255, 0, 0)!important; }
-.text-nos { color: rgb(255, 72, 133)!important; }
-.text-cruise { color: rgb(255, 72, 133)!important; }
-.text-armed { color: rgb(255, 72, 133)!important; }
-.text-harness { color: rgb(182, 72, 255)!important; }
-.text-oxygen { color: rgb(138, 168, 189)!important; }
-.text-parachute { color: rgb(0, 0, 0)!important; }
-.text-dev { color: rgb(0, 0, 0)!important; }
-.text-gauge { color: rgb(255, 255, 255)!important; }
-
-#main-container {
+html, body {
+  margin: 0;
   width: 100%;
-  height: auto;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
 }
 
-/* Money */
-#money-container {
-  position: absolute;
-  right: 2vw;
-  top: 5vh;
-  font-weight: 400;
-  font-size: 40px;
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
 }
 
-#sign, #bank {
-  font-family: 'Pricedown Bl', sans-serif;
-  text-align: right;
-  color: #00ac31;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7);
-}
-
-#plus {
-  font-size: 50px;
-  font-family: 'Pricedown Bl', sans-serif;
-  text-align: right;
-  color: #00ac31;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7);
-}
-
-#minus {
-  font-size: 50px;
-  font-family: 'Pricedown Bl', sans-serif;
-  text-align: right;
-  color: #ac0000;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7);
-}
-
-#money {
-  font-family: 'Pricedown Bl', sans-serif;
-  text-align: right;
-  color: #ffffff;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7);
-}
-
-/* Player HUD */
-
-#playerhud {
-  position: absolute;
+.hud-root {
+  position: fixed;
+  left: 2.2rem;
+  right: 2.2rem;
+  bottom: 2rem;
   display: flex;
-  left: 3vh;
-  bottom: 0.2vw;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition: opacity .18s ease, visibility .18s ease;
 }
 
-.q-ml-xl {
-  margin-left: -22px!important; /* Change this to space radials */
+.status-stack {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  min-width: 15rem;
+  padding: .9rem;
+  border-radius: 1rem;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
 }
 
-/* Vehicle HUD */
-
-speed:after {
-  content: "MPH"; /* If using KPH change this content from MPH */
-  display: block;
-  padding-top: 3px;
-  padding-left: 2px;
-  padding-right: 2px;
-  padding-bottom: 8px;
-  font-weight: 900;
+.bar-wrap {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: center;
+  gap: .65rem;
 }
 
-altitude:after {
-  content: "ALT";
-  display: block;
-  padding-top: 10px;
-  padding-left: 2px;
-  padding-right: 2px;
-  font-weight: 900;
-}
-
-speed {
-  transform: rotate(150deg);
-  font-size: 2.4vh;
-  position: fixed; 
-  color: #fff; 
-  text-align: center;
-  font-weight: 600;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7); 
-}
-
-altitude {
-  transform: rotate(135deg);
-  font-size: 2.4vh;
-  position: fixed; 
-  color: #fff; 
-  text-align: center;
-  font-weight: 600;
-  text-shadow: -1px -1px 0 rgba(0,0,0, 0.7), 1px -1px 0 rgba(0,0,0, 0.7), -1px 1px 0 rgba(0,0,0, 0.7), 1px 1px 0 rgba(0,0,0, 0.7); 
-}
-
-.border {
-  bottom: 7.9%;
-  left: 1.3%;
-  width: 0%;
-  text-align: center;
-}
-
-.square {
-  bottom: 6.30%;
-  width: 29vh;
-  height: 18.5vh;
-  border: 4px solid #bababa;
-  position: absolute;
-  display: inline-block;
-}
-
-.circle {
-  bottom: 6.9%;
-  width: 27vh;
-  height: 22.9vh;
-  border: 4px solid #bababa;
-  position: absolute;
-  display: inline-block;
-  border-radius: 50%;
-}
-
-/* Animation */
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 2s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
-}
-
-/* Compass */
-.baseplate {
-  position: relative;
-  margin: 0 auto;
-  top: -0.8vh;
-	width: 150px;
-  height: auto;
-}
-
-.street-container {
-  position: relative;
-  top: 0.5vh;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 1.4vh;
-  letter-spacing: 0.7px;
-  text-decoration: none;
-  font-style: normal;
-  font-variant: small-caps;
-  text-transform: none;
-  font-weight: 800;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6);
-}
-
-.street1 {
-  position: absolute;
-  margin: 0 auto;
-  right: 55%;
-  text-align: right!important;
-  color: rgb(255, 255, 255);
-}
-
-.street2 {
-  position: absolute;
-  margin: 0 auto;
-  left: 55%;
-  text-align: left!important;
-  color: rgb(255, 255, 255);
-}
-
-.pointer {
-  position: absolute;
-  margin: 0 auto;
-  top: -2%;
-  left: 0;
-  right: 0;
-  font-family: 'Yantramanav', sans-serif;
-  color: rgb(255, 255, 255);
-  font-size: 2.2vh;
-  text-align: center;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6);
-  z-index: 9999;
-}
-
-.degrees {
-  position: absolute;
-  margin: 0 auto;
-  top: 80%;
-  left: 0;
-  right: 0;
-  opacity: 0.8;
-  font-family: 'Yantramanav', sans-serif;
-  color: rgb(255, 255, 255);
-  font-size: 1.5vh;
-  font-weight: 600;
-  text-align: center;
-  text-shadow: 0 0 1px rgb(0 0 0 / 60%), 0 0 1px rgb(0 0 0 / 60%), 0 0 1px rgb(0 0 0 / 60%), 0 0 1px rgb(0 0 0 / 60%);
-}
-
-.bezel {
-  position: relative;
-  width:100%;
-  height: 2vh;
-  font-family: 'Yantramanav', sans-serif;
-  font-size: 0.35vh;
+.label {
+  font-size: .72rem;
   font-weight: 700;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6);
+  letter-spacing: .12em;
+  color: var(--muted);
 }
 
-.bearing {
-  position: relative;
-  width:100%;
-  top: -0.5vh;
-  height: 3.5vh;
-  padding-left: 0.12vw;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 2.3vh;
-  letter-spacing: 0.7px;
-  text-decoration: none;
-  font-style: normal;
-  font-variant: small-caps;
-  text-transform: none;
-  font-weight: 600;
-  text-shadow: 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6), 0 0 1px rgba(0, 0, 0, 0.6);
+.track {
+  width: 9rem;
+  height: .72rem;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  transition: width .18s ease, opacity .18s ease, filter .18s ease;
+}
+
+#health { background: linear-gradient(90deg, #4ade80, #16a34a); }
+#armor { background: linear-gradient(90deg, #60a5fa, #2563eb); }
+#hunger { background: linear-gradient(90deg, #fbbf24, #d97706); }
+#thirst { background: linear-gradient(90deg, #22d3ee, #0891b2); }
+#voice { background: linear-gradient(90deg, #e5e7eb, #94a3b8); }
+
+.vehicle-card {
+  min-width: 11rem;
+  padding: .95rem 1rem;
+  border-radius: 1rem;
+  background: var(--panel-strong);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+  transition: opacity .18s ease, visibility .18s ease;
+}
+
+.vehicle-top {
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+  margin-bottom: .6rem;
+}
+
+#speed {
+  font-size: 2.25rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+#unit {
+  font-size: .82rem;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.vehicle-bottom {
+  display: flex;
+  gap: .55rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.2rem;
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.pill.danger {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+}
+
+.pill.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+}
+
+.pill.success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #bbf7d0;
+}
+
+@media (max-width: 1366px) {
+  .hud-root {
+    left: 1.4rem;
+    right: 1.4rem;
+    bottom: 1.4rem;
+  }
+
+  .status-stack {
+    min-width: 13rem;
+    padding: .8rem;
+  }
+
+  .track {
+    width: 7.4rem;
+  }
+
+  #speed {
+    font-size: 1.9rem;
+  }
 }
