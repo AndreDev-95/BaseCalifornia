@@ -1,0 +1,37 @@
+{
+  "notify": {
+    "transformed": "Your vampire form has awakened.",
+    "cured": "Vampirism has been removed.",
+    "ring_active": "The daylight ring protects you from sunlight for a while.",
+    "blood_restored": "You restored %(amount)s blood hunger.",
+    "not_vampire": "You are not a vampire.",
+    "feed_cooldown": "You still need to recover from your last feeding.",
+    "no_target": "No valid target nearby.",
+    "sun_damage": "Sunlight is burning you.",
+    "feed_success_player": "You drank blood from a player.",
+    "feed_success_npc": "You drank blood from an NPC.",
+    "you_were_fed_on": "You felt your blood being drained.",
+    "starving": "Your blood hunger is critical. Feed now.",
+    "critical_blood": "Your blood hunger is low.",
+    "level_up": "You reached level %(level)s - %(name)s.",
+    "admin_set": "Player %(id)s is now a vampire.",
+    "admin_removed": "Removed vampirism from player %(id)s."
+  },
+  "progress": {
+    "feeding_player": "Drinking player blood...",
+    "feeding_npc": "Drinking NPC blood..."
+  },
+  "info": {
+    "feed_keybind": "Drink blood from the nearest target",
+    "transform_keybind": "Toggle vampire form"
+  },
+  "commands": {
+    "toggle_help": "Enable vampire system or show your status.",
+    "status_help": "Show your vampire status.",
+    "blood_pouch_help": "Use a blood pouch.",
+    "antidote_help": "Use a vampire antidote.",
+    "ring_help": "Use the daylight ring.",
+    "admin_set_help": "Turn a player into a vampire.",
+    "admin_remove_help": "Remove vampirism from a player."
+  }
+}

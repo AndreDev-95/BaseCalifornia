@@ -1,0 +1,37 @@
+{
+  "notify": {
+    "transformed": "A tua forma vampírica despertou.",
+    "cured": "O vampirismo foi removido.",
+    "ring_active": "O daylight ring protege-te temporariamente do sol.",
+    "blood_restored": "Recuperaste %(amount)s de sede de sangue.",
+    "not_vampire": "Não és um vampiro.",
+    "feed_cooldown": "Ainda estás a recuperar da última alimentação.",
+    "no_target": "Não tens nenhum alvo válido perto de ti.",
+    "sun_damage": "O sol está a queimar-te.",
+    "feed_success_player": "Sugaste sangue de um jogador.",
+    "feed_success_npc": "Sugaste sangue de um NPC.",
+    "you_were_fed_on": "Sentiste o teu sangue a ser drenado.",
+    "starving": "A tua sede de sangue está crítica. Alimenta-te já.",
+    "critical_blood": "A tua sede de sangue está baixa.",
+    "level_up": "Subiste para nível %(level)s - %(name)s.",
+    "admin_set": "O jogador %(id)s foi transformado em vampiro.",
+    "admin_removed": "O vampirismo do jogador %(id)s foi removido."
+  },
+  "progress": {
+    "feeding_player": "A sugar sangue do jogador...",
+    "feeding_npc": "A sugar sangue do NPC..."
+  },
+  "info": {
+    "feed_keybind": "Sugar sangue do alvo mais próximo",
+    "transform_keybind": "Alternar forma vampírica"
+  },
+  "commands": {
+    "toggle_help": "Ativa o sistema de vampiro ou mostra o teu estado.",
+    "status_help": "Mostra o teu estado vampírico.",
+    "blood_pouch_help": "Usa uma bolsa de sangue.",
+    "antidote_help": "Usa um antídoto vampírico.",
+    "ring_help": "Usa o daylight ring.",
+    "admin_set_help": "Transforma um jogador em vampiro.",
+    "admin_remove_help": "Remove o vampirismo de um jogador."
+  }
+}
