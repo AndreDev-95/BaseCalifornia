@@ -1,1 +1,47 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><link rel="stylesheet" href="styles.css"></head><body><div id="hud"><div id="status"><div class="bar" id="health"></div><div class="bar" id="armor"></div><div class="bar" id="hunger"></div><div class="bar" id="thirst"></div></div><div id="vehicle"><span id="speed">0</span><span id="fuel">0%</span></div></div><script src="app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div id="hud" class="hud-root hidden">
+    <div id="status" class="status-stack">
+      <div class="bar-wrap" data-key="health">
+        <span class="label">HP</span>
+        <div class="track"><div class="bar" id="health"></div></div>
+      </div>
+      <div class="bar-wrap" data-key="armor">
+        <span class="label">AR</span>
+        <div class="track"><div class="bar" id="armor"></div></div>
+      </div>
+      <div class="bar-wrap" data-key="hunger">
+        <span class="label">FO</span>
+        <div class="track"><div class="bar" id="hunger"></div></div>
+      </div>
+      <div class="bar-wrap" data-key="thirst">
+        <span class="label">AG</span>
+        <div class="track"><div class="bar" id="thirst"></div></div>
+      </div>
+      <div class="bar-wrap" data-key="voice">
+        <span class="label">VOZ</span>
+        <div class="track"><div class="bar" id="voice"></div></div>
+      </div>
+    </div>
+
+    <div id="vehicle" class="vehicle-card hidden">
+      <div class="vehicle-top">
+        <span id="speed">0</span>
+        <span id="unit">KPH</span>
+      </div>
+      <div class="vehicle-bottom">
+        <span id="fuel" class="pill">0%</span>
+        <span id="seatbelt" class="pill danger">SEM CINTO</span>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

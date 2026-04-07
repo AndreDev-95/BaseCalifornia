@@ -1,1 +1,192 @@
-*{box-sizing:border-box} body{margin:0;background:transparent;color:#fff;font-family:Arial,sans-serif} #hud{position:fixed;left:24px;bottom:24px;display:flex;gap:18px;align-items:end} #status{display:flex;flex-direction:column;gap:10px} .bar{height:12px;min-width:42px;max-width:140px;border-radius:999px;background:rgba(255,255,255,.15);box-shadow:0 4px 20px rgba(0,0,0,.35);transition:width .2s ease,opacity .2s ease} #health{background:linear-gradient(90deg,#34d399,#10b981)} #armor{background:linear-gradient(90deg,#60a5fa,#2563eb)} #hunger{background:linear-gradient(90deg,#f59e0b,#d97706)} #thirst{background:linear-gradient(90deg,#22d3ee,#0891b2)} #vehicle{position:fixed;right:24px;bottom:24px;display:none;padding:12px 14px;border-radius:14px;background:rgba(15,23,42,.72);backdrop-filter:blur(8px);box-shadow:0 8px 30px rgba(0,0,0,.35)} #speed{font-size:28px;font-weight:700;margin-right:10px} #fuel{font-size:16px;opacity:.88}
+* { box-sizing: border-box; }
+
+:root {
+  --panel: rgba(15, 23, 42, 0.72);
+  --panel-strong: rgba(15, 23, 42, 0.9);
+  --track: rgba(255, 255, 255, 0.12);
+  --text: #f8fafc;
+  --muted: rgba(248, 250, 252, 0.72);
+  --danger: #ef4444;
+  --warning: #f59e0b;
+  --success: #22c55e;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text);
+  font-family: Inter, Arial, sans-serif;
+}
+
+.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.hud-root {
+  position: fixed;
+  left: 2.2rem;
+  right: 2.2rem;
+  bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  transition: opacity .18s ease, visibility .18s ease;
+}
+
+.status-stack {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  min-width: 15rem;
+  padding: .9rem;
+  border-radius: 1rem;
+  background: var(--panel);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.35);
+}
+
+.bar-wrap {
+  display: grid;
+  grid-template-columns: 2.2rem 1fr;
+  align-items: center;
+  gap: .65rem;
+}
+
+.bar-wrap.is-critical .track {
+  box-shadow: 0 0 0 1px rgba(239,68,68,.22), 0 0 16px rgba(239,68,68,.18);
+}
+
+.label {
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.track {
+  width: 9rem;
+  height: .72rem;
+  border-radius: 999px;
+  background: var(--track);
+  overflow: hidden;
+  transition: box-shadow .2s ease;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+  transition: width .18s ease, opacity .18s ease, filter .18s ease;
+}
+
+#health { background: linear-gradient(90deg, #4ade80, #16a34a); }
+#armor { background: linear-gradient(90deg, #60a5fa, #2563eb); }
+#hunger { background: linear-gradient(90deg, #fbbf24, #d97706); }
+#thirst { background: linear-gradient(90deg, #22d3ee, #0891b2); }
+#voice { background: linear-gradient(90deg, #e5e7eb, #94a3b8); }
+
+.vehicle-card {
+  min-width: 11rem;
+  padding: .95rem 1rem;
+  border-radius: 1rem;
+  background: var(--panel-strong);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.4);
+  transition: opacity .18s ease, visibility .18s ease;
+}
+
+.vehicle-top {
+  display: flex;
+  align-items: baseline;
+  gap: .55rem;
+  margin-bottom: .6rem;
+}
+
+#speed {
+  font-size: 2.25rem;
+  line-height: 1;
+  font-weight: 800;
+}
+
+#speed.is-fast {
+  color: #fde68a;
+}
+
+#speed.is-danger {
+  color: #fca5a5;
+}
+
+#unit {
+  font-size: .82rem;
+  letter-spacing: .12em;
+  color: var(--muted);
+}
+
+.vehicle-bottom {
+  display: flex;
+  gap: .55rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 4.8rem;
+  padding: .35rem .65rem;
+  border-radius: 999px;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text);
+}
+
+.pill.danger {
+  background: rgba(239, 68, 68, 0.18);
+  color: #fecaca;
+}
+
+.pill.warning {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fde68a;
+}
+
+.pill.success {
+  background: rgba(34, 197, 94, 0.2);
+  color: #bbf7d0;
+}
+
+.is-pulse {
+  animation: pulse 1.15s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); filter: brightness(1); }
+  50% { transform: scale(1.03); filter: brightness(1.15); }
+}
+
+@media (max-width: 1366px) {
+  .hud-root {
+    left: 1.4rem;
+    right: 1.4rem;
+    bottom: 1.4rem;
+  }
+
+  .status-stack {
+    min-width: 13rem;
+    padding: .8rem;
+  }
+
+  .track {
+    width: 7.4rem;
+  }
+
+  #speed {
+    font-size: 1.9rem;
+  }
+}
